@@ -1,0 +1,36 @@
+
+02:56:11.84 | SUCCESS | Session added +17267626125 @hortenciachhabraKqvEN923 PROXY : NONE
+02:56:27.21 | INFO | Sessions found: 1!
+02:56:27.21 | INFO | Checking sessions for validity!
+02:56:29.42 | SUCCESS | Valid sessions: 1; Invalid: 0
+02:56:39.58 | INFO | main | Thread 0 | Account60 | Start! | PROXY : None
+02:58:00.43 | INFO | main | Thread 0 | Account60 | Have 2 diamonds!
+02:58:00.71 | INFO | game | Thread 0 | Account60 | Start DROP GAME!
+02:59:19.74 | SUCCESS | game | Thread 0 | Account60 | Claimed DROP GAME ! Claimed: 247
+03:00:08.26 | INFO | game | Thread 0 | Account60 | Start DROP GAME!
+03:01:27.09 | SUCCESS | game | Thread 0 | Account60 | Claimed DROP GAME ! Claimed: 250
+03:02:03.10 | INFO | main | Thread 0 | Account60 | Sleep 33615 seconds!
+2024-10-04 03:09:05 | INFO | Sessions found: 1!
+2024-10-04 03:09:05 | INFO | Checking sessions for validity!
+2024-10-04 03:09:08 | SUCCESS | Valid sessions: 1; Invalid: 0
+2024-10-04 03:09:42 | INFO | Sessions found: 1!
+2024-10-04 03:09:42 | INFO | Checking sessions for validity!
+2024-10-04 03:09:44 | SUCCESS | Valid sessions: 1; Invalid: 0
+2024-10-04 03:10:21 | INFO | Sessions found: 1!
+2024-10-04 03:10:21 | INFO | Checking sessions for validity!
+2024-10-04 03:10:23 | SUCCESS | Valid sessions: 1; Invalid: 0
+2024-10-04 03:10:35 | INFO | Sessions found: 1!
+2024-10-04 03:10:35 | INFO | Checking sessions for validity!
+2024-10-04 03:10:37 | SUCCESS | Valid sessions: 1; Invalid: 0
+2024-10-04 03:11:57 | INFO | Sessions found: 1!
+2024-10-04 03:11:57 | INFO | Checking sessions for validity!
+2024-10-04 03:11:59 | SUCCESS | Valid sessions: 1; Invalid: 0
+2024-10-04 03:12:19 | INFO | main | Thread 0 | Account60 | Start! | PROXY : socks5://shopp5k269:Aka1aEz9yjr8NUm2ani@166.88.195.153:5785
+2024-10-04 03:13:16 | INFO | main | Thread 0 | Account60 | Have 0 diamonds!
+2024-10-04 03:13:16 | INFO | main | Thread 0 | Account60 | Sleep 34370 seconds!
+2024-10-04 03:38:09 | INFO | Sessions found: 1!
+2024-10-04 03:38:09 | INFO | Checking sessions for validity!
+2024-10-04 03:38:11 | SUCCESS | Valid sessions: 1; Invalid: 0
+2024-10-04 03:38:27 | INFO | main | Thread 0 | Account60 | Start! | PROXY : socks5://shopp5k269:Aka1aEz9yjr8NUm2ani@166.88.195.153:5785
+2024-10-04 03:39:16 | INFO | main | Thread 0 | Account60 | Have 0 diamonds!
+2024-10-04 03:39:16 | INFO | main | Thread 0 | Account60 | Sleep 32260 seconds!

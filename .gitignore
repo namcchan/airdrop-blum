@@ -1,0 +1,6 @@
+venv
+__pycache__
+sessions
+blum_bot.log
+proxy.txt
+.env
