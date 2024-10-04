@@ -83,7 +83,7 @@ class Coinsweeper:
             min_game_time = settings.COINSWEEPER_TIME_PLAY_EACH_GAME[0]
             max_game_time = settings.COINSWEEPER_TIME_PLAY_EACH_GAME[1]
             game_time = random.randint(min_game_time, max_game_time)
-            response = await self.session.post("https://api.bybitcoinsweeper.com/api/games/start", json={}, headers=self.headers)
+            response = await self.session.post("https://api.bybitcoinsweeper.com/api/games/start", json={}, headers=self.headers, proxy=self.proxy)
             playgame = await response.json()
             if "message" in playgame:
                 if("expired" in playgame["message"]):
@@ -110,7 +110,7 @@ class Coinsweeper:
             }
             self.wait(game_time)
             if is_win:
-                response = await self.session.post('https://api.bybitcoinsweeper.com/api/games/win', json=game_data, headers=self.headers)
+                response = await self.session.post('https://api.bybitcoinsweeper.com/api/games/win', json=game_data, headers=self.headers, proxy=self.proxy)
                 if response.status == 201:
                     logger.success(f"Game Status: WIN")
                 elif response.status == 401:
@@ -125,7 +125,7 @@ class Coinsweeper:
                     "gifts": rewarddata["gifts"],
                     "gameId": gameid
                 }
-                response = await self.session.post('https://api.bybitcoinsweeper.com/api/games/lose', json=game_data, headers=self.headers)
+                response = await self.session.post('https://api.bybitcoinsweeper.com/api/games/lose', json=game_data, headers=self.headers, proxy=self.proxy)
                 if response.status == 201:
                     logger.error(f"Game Status: LOSEEEEEEEE")
                 elif response.status == 401:
@@ -178,23 +178,21 @@ class Coinsweeper:
 
     async def get_me(self):
         try:
-            response = await self.session.get("https://api.bybitcoinsweeper.com/api/users/me")
+            response = await self.session.get("https://api.bybitcoinsweeper.com/api/users/me", proxy=self.proxy)
             if response.status == 200:
                 user = await response.json()
                 self.user_id = user['id']
                 logger.success(f"{self.name} | Balance: {user['score']}")
-                return True
             else:
                 logger.warning(f"{self.name} | Get user info failed: {response.status} | {response.json()}")
         except Exception as err:
             logger.error(f"{self.name} | {err}")
-            return False
 
     async def do_refresh_token(self):
         payload = {
             "refreshToken": str(self.refresh_token)
         }
-        response = await self.session.post("https://api.bybitcoinsweeper.com/api/auth/refresh-token", json=payload)
+        response = await self.session.post("https://api.bybitcoinsweeper.com/api/auth/refresh-token", json=payload, proxy=self.proxy)
         if response.status == 201:
             token = await response.json()
             self.access_token = token['accessToken']

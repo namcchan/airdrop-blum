@@ -46,7 +46,7 @@ class Blum:
         self.session = aiohttp.ClientSession(headers=headers, trust_env=True, connector=aiohttp.TCPConnector(verify_ssl=False))
 
     async def run(self):
-        await asyncio.sleep(random.randint(*settings.ACC_DELAY))
+        await asyncio.sleep(random.randint(*settings.BLUM_DELAY))
         try:
             login = await self.login()
             if login == False:
@@ -64,10 +64,10 @@ class Blum:
                 if not valid:
                     logger.warning(f"main | Thread {self.thread} | {self.name} | Token is invalid. Refreshing token...")
                     await self.refresh()
-                await asyncio.sleep(random.randint(*settings.MINI_SLEEP))
+                await asyncio.sleep(random.randint(*settings.BLUM_MINI_SLEEP))
 
                 await self.claim_diamond()
-                await asyncio.sleep(random.randint(*settings.MINI_SLEEP))
+                await asyncio.sleep(random.randint(*settings.BLUM_MINI_SLEEP))
 
                 try:
                     timestamp, start_time, end_time = await self.balance()
@@ -75,18 +75,18 @@ class Blum:
                     continue
 
                 await self.get_referral_info()
-                await asyncio.sleep(random.randint(*settings.MINI_SLEEP))
+                await asyncio.sleep(random.randint(*settings.BLUM_MINI_SLEEP))
 
-                if settings.DO_TASKS:
+                if settings.BLUM_DO_TASKS:
                     await self.do_tasks()
-                    await asyncio.sleep(random.randint(*settings.MINI_SLEEP))
+                    await asyncio.sleep(random.randint(*settings.BLUM_MINI_SLEEP))
 
-                if settings.SPEND_DIAMONDS:
+                if settings.BLUM_SPEND_DIAMONDS:
                     diamonds_balance = await self.get_diamonds_balance()
                     logger.info(f"main | Thread {self.thread} | {self.name} | Have {diamonds_balance} diamonds!")
                     for _ in range(diamonds_balance):
                         await self.game()
-                        await asyncio.sleep(random.randint(*settings.SLEEP_GAME_TIME))
+                        await asyncio.sleep(random.randint(*settings.BLUM_SLEEP_GAME_TIME))
 
                 if start_time is None and end_time is None:
                     await self.start()
@@ -95,11 +95,11 @@ class Blum:
                     timestamp, balance = await self.claim()
                     logger.success(f"main | Thread {self.thread} | {self.name} | Claimed reward! Balance: {balance}")
                 else:
-                    add_sleep = random.randint(*settings.SLEEP_8HOURS)
+                    add_sleep = random.randint(*settings.BLUM_SLEEP_8HOURS)
                     logger.info(f"main | Thread {self.thread} | {self.name} | Sleep {(end_time-timestamp+add_sleep)} seconds!")
                     await asyncio.sleep(end_time-timestamp+add_sleep)
                     await self.login()
-                await asyncio.sleep(random.randint(*settings.MINI_SLEEP))
+                await asyncio.sleep(random.randint(*settings.BLUM_MINI_SLEEP))
             except Exception as err:
                 logger.error(f"main | Thread {self.thread} | {self.name} | {err}")
                 if err != "Server disconnected":
@@ -107,9 +107,9 @@ class Blum:
                     if not valid:
                         logger.warning(f"main | Thread {self.thread} | {self.name} | Token is invalid. Refreshing token...")
                         await self.refresh()
-                    await asyncio.sleep(random.randint(*settings.MINI_SLEEP))
+                    await asyncio.sleep(random.randint(*settings.BLUM_MINI_SLEEP))
                 else:
-                    await asyncio.sleep(5*random.randint(*settings.MINI_SLEEP))
+                    await asyncio.sleep(5*random.randint(*settings.BLUM_MINI_SLEEP))
 
 
     async def claim(self):
