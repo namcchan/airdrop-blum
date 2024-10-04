@@ -1,4 +1,5 @@
 import asyncio
+from bot.coinsweeper import Coinsweeper
 from bot.core import create_sessions
 from bot.telegram import Accounts
 from bot.blum import Blum
@@ -7,12 +8,12 @@ import os
 
 hello = """
 
- █████╗ ██╗██████╗ ██████╗ ██████╗  ██████╗ ██████╗     ██████╗ ██╗     ██╗   ██╗███╗   ███╗
-██╔══██╗██║██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔══██╗    ██╔══██╗██║     ██║   ██║████╗ ████║
-███████║██║██████╔╝██║  ██║██████╔╝██║   ██║██████╔╝    ██████╔╝██║     ██║   ██║██╔████╔██║
-██╔══██║██║██╔══██╗██║  ██║██╔══██╗██║   ██║██╔═══╝     ██╔══██╗██║     ██║   ██║██║╚██╔╝██║
-██║  ██║██║██║  ██║██████╔╝██║  ██║╚██████╔╝██║         ██████╔╝███████╗╚██████╔╝██║ ╚═╝ ██║
-╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝         ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝     ╚═╝
+ █████╗ ██╗██████╗ ██████╗ ██████╗  ██████╗ ██████╗     ██████╗  ██████╗ ████████╗███████╗
+██╔══██╗██║██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔══██╗    ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
+███████║██║██████╔╝██║  ██║██████╔╝██║   ██║██████╔╝    ██████╔╝██║   ██║   ██║   ███████╗
+██╔══██║██║██╔══██╗██║  ██║██╔══██╗██║   ██║██╔═══╝     ██╔══██╗██║   ██║   ██║   ╚════██║
+██║  ██║██║██║  ██║██████╔╝██║  ██║╚██████╔╝██║         ██████╔╝╚██████╔╝   ██║   ███████║
+╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝         ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝
 
 """
 
@@ -27,8 +28,9 @@ async def main():
         await create_sessions()
 
     if action == 1:
-        accounts = await Accounts().get_accounts()
 
+        bot = int(input("Select bot:\n1. Blum\n2. CoinSweeper\n>"))
+        accounts = await Accounts().get_accounts()
         tasks = []
         if settings.USE_PROXY:
             proxies = []
@@ -41,10 +43,16 @@ async def main():
                     proxies = [i.strip() for i in file.readlines()]
 
             for thread, account in enumerate(accounts):
-                tasks.append(asyncio.create_task(Blum(account=account, thread=thread, proxy=proxies[thread % len(proxies)]).main()))
+                if bot == 1:
+                    tasks.append(asyncio.create_task(Blum(account=account, thread=thread, proxy=proxies[thread % len(proxies)]).run()))
+                elif bot == 2:
+                    tasks.append(asyncio.create_task(Coinsweeper(account=account, thread=thread, proxy=proxies[thread % len(proxies)]).run()))
         else:
             for thread, account in enumerate(accounts):
-                tasks.append(asyncio.create_task(Blum(account=account, thread=thread,proxy = None).main()))
+                if bot == 1:
+                    tasks.append(asyncio.create_task(Blum(account=account, thread=thread,proxy = None).run()))
+                elif bot == 2:
+                    tasks.append(asyncio.create_task(Coinsweeper(account=account, thread=thread,proxy = None).run()))
         await asyncio.gather(*tasks)
 
 if __name__ == '__main__':

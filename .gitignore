@@ -2,5 +2,7 @@ venv
 __pycache__
 sessions
 blum_bot.log
+bot.log
 proxy.txt
 .env
+sessions*

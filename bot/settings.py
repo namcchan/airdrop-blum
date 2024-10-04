@@ -23,5 +23,9 @@ class Settings(BaseSettings):
     MINI_SLEEP : list[int] = [3,7]
     SLEEP_8HOURS : list[int] = [60*60, 120*60]
 
+    COINSWEEPER_GAME_PLAY_EACH_ROUND: list[int] = [2, 4]
+    COINSWEEPER_TIME_PLAY_EACH_GAME: list[int] = [30, 60]
+    COINSWEEPER_DELAY_EACH_ACCOUNT: list[int] = [20, 30]
+
 
 settings = Settings()

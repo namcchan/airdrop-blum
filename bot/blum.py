@@ -45,7 +45,7 @@ class Blum:
             'user-agent': UserAgent(os='android').random}
         self.session = aiohttp.ClientSession(headers=headers, trust_env=True, connector=aiohttp.TCPConnector(verify_ssl=False))
 
-    async def main(self):
+    async def run(self):
         await asyncio.sleep(random.randint(*settings.ACC_DELAY))
         try:
             login = await self.login()
