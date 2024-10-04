@@ -58,16 +58,21 @@ To fast install libraries and run bot - open run.bat on Windows or run.sh on Lin
 
 3. Configure the application:
 
-   - Open `config.py` and add your `API_ID` and `API_HASH`:
+   ```bash
+   cp .env-example .env
+   touch proxy.txt
+   ```
 
-     ```python
+   - Open `.env` and add your `API_ID` and `API_HASH`:
+
+     ```bash
      API_ID = your_api_id
      API_HASH = 'your_api_hash'
      ```
 
    - If you want to use a proxy, set `USE_PROXY` in `config.py` to `True`, otherwise set it to `False`:
 
-     ```python
+     ```bash
      USE_PROXY = True  # or False
      ```
 
@@ -75,16 +80,7 @@ To fast install libraries and run bot - open run.bat on Windows or run.sh on Lin
      Proxy format : ip:port:login:password session_name, session name is which use this proxy (WITHOUT .session, only session name)
 
    ```txt
-   192.168.1.1:1234:username:password
-   192.168.1.2:2934:username:password
-   192.168.1.3:3834:username:password
-   192.168.5.1:2884:username:password
-   ```
-
-   And don't forget set proxy type in `config.py`
-
-   ```python
-   PROXY_TYPE = "socks5" # or http
+   ip:port:login:password
    ```
 
 4. IMPORTANT Create a `sessions` folder
