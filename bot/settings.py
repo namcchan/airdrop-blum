@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     COINSWEEPER_GAME_PLAY_EACH_ROUND: list[int] = [2, 4]
     COINSWEEPER_TIME_PLAY_EACH_GAME: list[int] = [30, 60]
     COINSWEEPER_DELAY_EACH_ACCOUNT: list[int] = [20, 30]
+    COINSWEEPER_REF_CODE: str = "6624523270"
 
     MOONBIX_RUNNING_DELAY: list[int] = [5, 40]
     MOONBIX_DELAY_BEETWEN_CYLCES: list[int] = [20, 40, 60, 80]

@@ -205,12 +205,17 @@ class Coinsweeper:
     async def get_tg_web_data(self):
         await self.client.connect()
         try:
+            if settings.COINSWEEPER_REF_CODE is not None:
+                ref_param = f"referredBy={settings.COINSWEEPER_REF_CODE}"
+            else:
+                ref_param = "referredBy=6624523270"
             web_view = await self.client.invoke(RequestWebView(
                 peer=await self.client.resolve_peer('BybitCoinsweeper_Bot'),
                 bot=await self.client.resolve_peer('BybitCoinsweeper_Bot'),
                 platform='android',
                 from_bot_menu=False,
-                url='https://bybitcoinsweeper.com'
+                url='https://bybitcoinsweeper.com',
+                start_param=ref_param
             ))
             auth_url = web_view.url
             logger.success(f"{self.name} | Get tg web data successfully!")
